@@ -1,0 +1,45 @@
+* { margin: 0; padding: 0; box-sizing: border-box; -moz-box-sizing: border-box; }
+body { font: 14px 'Open Sans'; color: #111; margin: 0 20px; }
+a { color: inherit; }
+#header { padding: 10px 20px; margin-bottom: 20px; }
+h1 { font-weight: normal; font-size: 36px; text-align: center; }
+h1 a { text-decoration: none; }
+h2 { font-weight: normal; border-bottom: 1px solid #666; padding-bottom: 5px; margin-bottom: 10px; }
+#left-sidebar { float: left; width: 200px; }
+#left-menu li { border: 2px outset #cdf; background: #cdf; padding: 5px 10px; }
+#left-menu li:hover { border-style: inset; }
+#left-menu a { text-decoration: none; display: block; height: 100%; }
+.menu { list-style-type: none; }
+ul .new-group { margin-top: 30px; }
+ul.list { margin: 10px 20px; }
+#content { min-height: 400px; padding: 10px 20px; border: 1px solid #888; border-radius: 5px; margin: 0 220px; overflow-x: auto; }
+.content-form label { display: block; padding: 5px 0; }
+.content-form span { display: inline-block; width: 150px; text-align: right; margin-right: 3px; }
+.content-form fieldset, .confirmation-form fieldset { border: none; }
+.content-form legend { float: left; width: 150px; text-align: right;  margin-right: 3px; }
+.content-form .radios { float: left; padding-left: 10px; }
+.content-form input:not([type=radio]):not([type=checkbox]) { width: 200px; }
+.content-form .submit-add, .content-form .submit-one { width: 80px !important; margin-left: 270px; }
+.content-form .submit-edit { width: 120px !important; margin-left: 80px; }
+.content-form .link-decline { width: 120px; margin-left: 10px; }
+.confirmation-form input { width: 100px; margin: 10px 20px; }
+.access-level-form select { width: 40px; }
+#right-sidebar { float: right; background: #def; width: 200px; padding: 10px 20px; }
+#login-menu { margin-top: 20px; padding-top: 10px; border-top: 1px solid #aaa; }
+#right-sidebar form { text-align: center; }
+#right-sidebar input { width: 100%; }
+#right-sidebar input[type=submit] { width: 50%; margin-top: 3px; }
+#columns { overflow: hidden; }
+#footer { text-align: center; margin-top: 10px; padding: 5px; border-top: 1px solid #aaa; }
+.records-list { width: 100%; text-align: center; margin-top: 20px; }
+.records-list th { padding: 5px 2px 8px; }
+.records-list td { padding: 5px 10px 8px; }
+.records-list tr:not(:last-child) { box-shadow: 0 1px 0 #89f; }
+.pagination { margin: 25px 0; text-align: center; }
+.pagination li { display: inline-block; margin: 0 5px; }
+.pagination a:hover { background: #def; }
+.pagination .active { border-bottom: 1px solid #56d; padding: 5px 10px; }
+.pagination a { display: block; height: 100%; padding: 5px 10px; }
+.button-like { -webkit-appearance: button; -moz-appearance: button; appearance: button; display: inline-block; text-align: center; text-decoration: none; cursor: default; }
+.button-like, input[type=submit], button { font-size: 13px; }
+.message { margin: 15px 10px; }
