@@ -3,6 +3,7 @@
     <fieldset>
         <legend><?= $question ?></legend>
         <input type="hidden" name="id" value="<?= $id ?>">
+        <?= $csrf_field() ?>
         <input type="submit" name="confirmation" value="Tak">
         <input type="submit" name="confirmation" value="Nie">
     </fieldset>

@@ -78,10 +78,14 @@ class User {
         $this->validator->validate();
     }
 
-    public function setPassword($password, $repeated_password) {
+    public function validatePassword($password, $repeated_password) {
         $password_validator = new Validator();
         $password_validator->addField('password', "min_length(6)_and_equal_to($repeated_password)", $password, 'Hasło musi mieć minimum 6 znaków i zostać wpisane dwa razy tak samo.');
         $password_validator->validate();
+    }
+
+    public function setPassword($password, $repeated_password) {
+        $this->validatePassword($password, $repeated_password);
         if($this->id) {
             $password_hash = Utils::hash($password);
             $stmt = $this->pdo->prepare('UPDATE users SET password_hash = :password_hash WHERE id = :id');

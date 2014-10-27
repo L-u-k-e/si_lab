@@ -9,5 +9,6 @@
 <form action="/user/login" method="POST" class="content-form">
     <label><span>Login: </span><input name="login"></label>
     <label><span>Hasło: </span><input type="password" name="password"></label>
+    <?= $csrf_field() ?>
     <input type="submit" value="Zaloguj" class="submit-one">
 </form>

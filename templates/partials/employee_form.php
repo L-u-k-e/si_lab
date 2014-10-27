@@ -19,6 +19,7 @@
     <label><span>Nazwisko panieńskie: </span><input name="family_name" value="<?= $family_name ?>"></label>
     <label><span>E-mail: </span><input name="email" value="<?= $email ?>"></label>
     <label><span>Kod pocztowy: </span><input name="postal_code" value="<?= $postal_code ?>"></label>
+    <?= $csrf_field() ?>
     <?php if($editing): ?>
         <input type="hidden" name="id" value="<?= $id ?>">
         <input type="submit" value="Potwierdź zmiany" class="submit-edit">

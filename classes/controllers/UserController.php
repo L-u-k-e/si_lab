@@ -39,22 +39,28 @@ class UserController extends BaseController {
     public function register() {
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors = [];
+            $user = new User($_POST['login'], 0, $_POST['name'], $_POST['surname']);
             try {
-                $user = new User($_POST['login'], 0, $_POST['name'], $_POST['surname']);
-                $user->save();
+                $user->validate();
             } catch(ValidationException $e) {
                 $errors = array_merge($errors, $e->errors);
-            } catch(LoginExistsException $e) {
-                $errors[] = $e->getMessage();
             }
             $password_ok = true;
             try {
-                $user->setPassword($_POST['password'], $_POST['repeated_password']);
+                $user->validatePassword($_POST['password'], $_POST['repeated_password']);
             } catch(ValidationException $e) {
                 $password_ok = false;
                 $errors = array_merge($errors, $e->errors);
             }
             if(!$errors) {
+                try {
+                    $user->save();
+                } catch(LoginExistsException $e) {
+                    $errors[] = $e->getMessage();
+                }
+            }
+            if(!$errors) {
+                $user->setPassword($_POST['password'], $_POST['repeated_password']);
                 $content_view = new View('partials/successful_registration');
                 $content_view->set('name', $user->name)
                              ->set('surname', $user->surname);
@@ -187,7 +193,7 @@ class UserController extends BaseController {
             try {
                 $user = User::getByID($_GET['id']);
                 if($user->access_level < 4 || $user->id == $_SESSION['logged_user_id']) {
-                    $content_view->set('id', $employee->id)
+                    $content_view->set('id', $user->id)
                                  ->set('header', 'Usuwanie użytkownika')
                                  ->set('form_action', '/user/delete')
                                  ->set('question', "Czy na pewno chcesz usunąć użytkownika $user->name $user->surname o ID = $user->id?");

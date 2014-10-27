@@ -27,6 +27,7 @@
                     <?php endfor ?>
                     </select>
                     <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                    <?= $csrf_field() ?>
                     <input type="submit" value="Zmień">
                 </form>
             <?php else: ?>

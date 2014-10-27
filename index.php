@@ -13,6 +13,8 @@ include 'classes/autoloader.php';
 Utils::trimAllValues($_GET);
 Utils::trimAllValues($_POST);
 
+Utils::CSRFProtection();
+
 $router = new Router(
     [
         'employee(?:/(.+))?' => 'EmployeeController',

@@ -7,22 +7,40 @@
 
 class View {
 
-    private $filename;
+    private $filename, $parent = null;
     private $vars = [];
 
     function __construct($template_name) {
         $this->filename = "templates/$template_name.php";
     }
 
-    function set($name, $value, $safe = false) {
+    public function setParent(View $parent) {
+        $this->parent = $parent;
+    }
+
+    public function getParent() {
+        return $this->parent;
+    }
+
+    public function getVars() {
+        return $this->vars;
+    }
+
+    public function set($name, $value, $safe = false) {
         if($value instanceof View) {
+            if(!$value->getParent()) {
+                $value->setParent($this);
+            }
             $this->{$name} = $value;
         }
         $this->vars[$name] = Utils::htmlentities($value);
         return $this;
     }
 
-    function render($minify = false) {
+    public function render($minify = false) {
+        if($parent = $this->getParent()) {
+            extract($parent->getVars());
+        }
         extract($this->vars);
         ob_start();
         include($this->filename);

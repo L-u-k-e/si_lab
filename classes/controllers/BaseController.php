@@ -14,20 +14,19 @@ class BaseController {
 
     protected function defaultView() {
         $view = new View('layout');
-        $header = new View('partials/header');
-        $left_sidebar = new View('partials/left_sidebar');
-        $right_sidebar = new View('partials/right_sidebar');
         if($_SESSION['logged_in']) {
             try {
                 $logged_user = User::getByID($_SESSION['logged_user_id']);
-                $left_sidebar->set('logged_in', true)
+                $view->set('logged_in', true)
                              ->set('logged_user', $logged_user);
-                $right_sidebar->set('logged_in', true)
-                              ->set('logged_user', $logged_user);
             } catch(UserNotFoundException $e) {
                 Utils::destoyAndClearSession();
             }
         }
+        $view->set('csrf_field', function() { return Utils::getCSRFTokenField(); });
+        $header = new View('partials/header');
+        $left_sidebar = new View('partials/left_sidebar');
+        $right_sidebar = new View('partials/right_sidebar');
         $footer = new View('partials/footer');
         if($employees_added_in_session = count($_SESSION['employees'])) {
             $footer->set('employees_added_in_session', $employees_added_in_session);

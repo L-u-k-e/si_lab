@@ -15,6 +15,7 @@
     <label><span>Login: </span><input name="login" value="<?= $login ?>"></label>
     <label><span>Hasło: </span><input type="password" name="password" value="<?= $password ?>"></label>
     <label><span>Powtórz hasło: </span><input type="password" name="repeated_password" value="<?= $repeated_password ?>"></label>
+    <?= $csrf_field() ?>
     <?php if($editing): ?>
         <input type="hidden" name="id" value="<?= $id ?>">
         <input type="submit" value="Zapisz zmiany" class="submit-edit">
