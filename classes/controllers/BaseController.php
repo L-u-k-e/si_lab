@@ -20,7 +20,7 @@ class BaseController {
                 $view->set('logged_in', true)
                              ->set('logged_user', $logged_user);
             } catch(UserNotFoundException $e) {
-                Utils::destoyAndClearSession();
+                Utils::destroyAndClearSession();
             }
         }
         $view->set('csrf_field', function() { return Utils::getCSRFTokenField(); });
